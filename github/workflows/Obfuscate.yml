@@ -4,9 +4,7 @@ on:
   push:
     branches:
       - main
-  schedule:
-        # Runs everyday at 1:00 AM
-        - cron: "0 1 * * *"
+  workflow_dispatch: # 重点：增加这个，让你能手动点按钮运行任务
 
 permissions:
   contents: write
@@ -14,7 +12,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out the code
         uses: actions/checkout@v4
@@ -52,6 +49,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           branch: main
-          commit_message: ':arrow_up: update latest bpb panel'
+          commit_message: 'update latest bpb panel'
           commit_author: 'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'
-          push_options: '--set-upstream'
